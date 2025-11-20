@@ -1,12 +1,15 @@
 import { useState } from "react"
 
-export default function Player({ initialName, symbol, isActive}) {
+export default function Player({ initialName, symbol, isActive, onChangeName}) {
     const [playerName, setPlayerName] = useState(initialName);
     const [isEditing, setIsEditing] = useState(false);
 
     function actionBtn() {
         setIsEditing((editing) => !editing); 
         // best practice to update base state to previous state (param editing its up to you the value is same with isEditing true or false)
+        if (isEditing) {
+            onChangeName(symbol, playerName);
+        }
     }
 
     // param event its special feature from onChange props on input component it automatically passing the value
